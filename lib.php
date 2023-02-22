@@ -65,13 +65,9 @@ function gradeexport_profiles_get_options($profileid) {
     ));
     if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
         $optionsresult = $DB->get_records('gradeexport_profiles_opt', array('profileid' => $profileid));
-        // $profileopts = array();
         foreach ($optionsresult as $option) {
             $profileopts[$option->opt] = $option->value;
         }
-        // return $profileopts;
-    // } else {
-        // return null;
     }
     return $profileopts;
 }

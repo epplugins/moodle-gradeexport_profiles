@@ -40,17 +40,12 @@ require_once($CFG->dirroot . '/grade/export/profiles/lib.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class lib_test extends \advanced_testcase {
-    /**
-     * Set up steps
-     */
-    public function setUp(): void {
-        // global $DB;
-        // $this->resetAfterTest();
-    }
 
     /**
      * Only 1 profile with last == 1 for the user/course combination,
      * and it's the correct profile.
+     *
+     * @covers ::gradeexport_profiles_set_last
      */
     public function test_set_last() {
         global $PAGE, $DB;
@@ -76,7 +71,7 @@ class lib_test extends \advanced_testcase {
         // Fill the tables. First profile to include is "Last State".
         // No need for options or grades.
 
-        // teacher 1 - course1
+        // New user: teacher 1 - course1 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course1->id;
@@ -98,7 +93,7 @@ class lib_test extends \advanced_testcase {
         $record->last = 0;
         $profileid3 = $DB->insert_record('gradeexport_profiles', $record);
 
-        // teacher 2 - course1
+        // New user: teacher 2 - course1 .
         $record = new stdClass();
         $record->userid = $teacher2->id;
         $record->courseid = $course1->id;
@@ -113,7 +108,7 @@ class lib_test extends \advanced_testcase {
         $record->last = 0;
         $profileid5 = $DB->insert_record('gradeexport_profiles', $record);
 
-        // teacher 1 - course2
+        // New user: teacher 1 - course2 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course2->id;
@@ -186,6 +181,8 @@ class lib_test extends \advanced_testcase {
 
     /**
      * Test if the correct grades are retrieved.
+     *
+     * @covers ::gradeexport_profiles_get_grades
      */
     public function test_get_grades() {
         global $PAGE, $DB;
@@ -208,11 +205,10 @@ class lib_test extends \advanced_testcase {
         $this->getDataGenerator()->enrol_user($teacher2->id, $course1->id, $teacherrole->id);
         $this->getDataGenerator()->enrol_user($teacher1->id, $course2->id, $teacherrole->id);
 
-
         // Fill the tables. First profile to include is "Last State".
         // No need for options.
 
-        // teacher 1 - course1
+        // New user: teacher 1 - course1.
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course1->id;
@@ -225,7 +221,6 @@ class lib_test extends \advanced_testcase {
             array('profileid' => $profileid1, 'gradeid' => 3, 'state' => 0),
         );
         $DB->insert_records('gradeexport_profiles_grds', $entries);
-
 
         $record = new stdClass();
         $record->userid = $teacher1->id;
@@ -253,7 +248,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_grds', $entries);
 
-        // teacher 2 - course1
+        // New user: teacher 2 - course1 .
         $record = new stdClass();
         $record->userid = $teacher2->id;
         $record->courseid = $course1->id;
@@ -280,7 +275,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_grds', $entries);
 
-        // teacher 1 - course2
+        // New user: teacher 1 - course2 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course2->id;
@@ -350,6 +345,8 @@ class lib_test extends \advanced_testcase {
 
     /**
      * Test if the correct options are retrieved.
+     *
+     * @covers ::gradeexport_profiles_get_options
      */
     public function test_get_options() {
         global $PAGE, $DB;
@@ -372,11 +369,10 @@ class lib_test extends \advanced_testcase {
         $this->getDataGenerator()->enrol_user($teacher2->id, $course1->id, $teacherrole->id);
         $this->getDataGenerator()->enrol_user($teacher1->id, $course2->id, $teacherrole->id);
 
-
         // Fill the tables. First profile to include is "Last State".
         // No need for grades.
 
-        // teacher 1 - course1
+        // New user: teacher 1 - course1 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course1->id;
@@ -394,7 +390,6 @@ class lib_test extends \advanced_testcase {
             array('profileid' => $profileid1, 'opt' => 'separator', 'value' => 1),
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
-
 
         $record = new stdClass();
         $record->userid = $teacher1->id;
@@ -432,7 +427,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-        // teacher 2 - course1
+        // New user: teacher 2 - course1 .
         $record = new stdClass();
         $record->userid = $teacher2->id;
         $record->courseid = $course1->id;
@@ -469,7 +464,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-        // teacher 1 - course2
+        // New user: teacher 1 - course2 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course2->id;
@@ -512,12 +507,12 @@ class lib_test extends \advanced_testcase {
         $expectedopts = array();
         $this->assertTrue($profileopts == $expectedopts);
 
-        // // Nonexisting profile.
+        // Nonexisting profile.
         $profileopts = gradeexport_profiles_get_options(10101010104);
         $expectedopts = array();
         $this->assertTrue($profileopts == $expectedopts);
 
-        // // Different user's profile.
+        // Different user's profile.
         $profileopts = gradeexport_profiles_get_options($profileid4);
         $expectedopts = array();
         $this->assertTrue($profileopts == $expectedopts);
@@ -526,6 +521,8 @@ class lib_test extends \advanced_testcase {
 
     /**
      * Check the db tables after saving.
+     *
+     * @covers ::gradeexport_profiles_save_profile
      */
     public function test_save_profile() {
         global $PAGE, $DB, $USER, $COURSE;
@@ -549,7 +546,7 @@ class lib_test extends \advanced_testcase {
         $this->getDataGenerator()->enrol_user($teacher1->id, $course2->id, $teacherrole->id);
 
         // Fill the tables. First profile to include is "Last State".
-        // teacher 1 - course1
+        // New user: teacher 1 - course1 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course1->id;
@@ -598,7 +595,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-        // teacher 2 - course1
+        // New user: teacher 2 - course1 .
         $record = new stdClass();
         $record->userid = $teacher2->id;
         $record->courseid = $course1->id;
@@ -647,7 +644,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-        // teacher 1 - course2
+        // New user: teacher 1 - course2 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course2->id;
@@ -835,7 +832,6 @@ class lib_test extends \advanced_testcase {
         // We are assuming that $records is sorted the same way as $expected .
         $this->assertTrue($expected == $entries);
 
-
         // Profileid already exists: update existing profile instead of creating a new one.
         $items = array(
             1 => 1,
@@ -1001,6 +997,8 @@ class lib_test extends \advanced_testcase {
 
     /**
      * Check the db tables after deleting.
+     *
+     * @covers ::gradeexport_profiles_delete_profile
      */
     public function test_delete_profile() {
         global $PAGE, $DB;
@@ -1025,7 +1023,7 @@ class lib_test extends \advanced_testcase {
 
         // Fill the tables. First profile to include is "Last State".
 
-        // teacher 1 - course1
+        // New user: teacher 1 - course1 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course1->id;
@@ -1074,7 +1072,6 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course1->id;
@@ -1099,8 +1096,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-
-        // teacher 2 - course1
+        // New user: teacher 2 - course1 .
         $record = new stdClass();
         $record->userid = $teacher2->id;
         $record->courseid = $course1->id;
@@ -1149,7 +1145,7 @@ class lib_test extends \advanced_testcase {
         );
         $DB->insert_records('gradeexport_profiles_opt', $entries);
 
-        // teacher 1 - course2
+        // New user: teacher 1 - course2 .
         $record = new stdClass();
         $record->userid = $teacher1->id;
         $record->courseid = $course2->id;

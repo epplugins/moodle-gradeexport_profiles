@@ -47,7 +47,8 @@ if (substr($CFG->version, 0, 8) > 20220400) {
         false, false, true, null, null, null, $actionbar);
     export_verify_grades($COURSE->id);
 } else {
-    print_grade_page_head($COURSE->id, 'export', 'profiles', get_string('exportto', 'grades') . ' ' . get_string('pluginname', 'gradeexport_profiles'));
+    print_grade_page_head($COURSE->id, 'export', 'profiles',
+        get_string('exportto', 'grades') . ' ' . get_string('pluginname', 'gradeexport_profiles'));
     export_verify_grades($COURSE->id);
 }
 

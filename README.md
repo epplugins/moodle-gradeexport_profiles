@@ -3,7 +3,9 @@
 [![es](https://img.shields.io/badge/lang-es-yellow.svg)](README-es.md)
 
 
-It's a fork of ```gradeexport_ods``` that lets the user manage profiles to store user selections when exporting grades.
+Export grades in different formats (ods, excel, csv) from the same page, and manage profiles to store selections and options.
+
+This is a fork of ```gradeexport_ods``` that lets the user manage profiles to store user selections when exporting grades.
 
 When a user exports grades, her selections of items and options are lost. The standard export plugins will present all grade items selected and a default selection of options each time.
 

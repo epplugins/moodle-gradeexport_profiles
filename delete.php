@@ -35,6 +35,7 @@ if (!$course = $DB->get_record('course', array('id' => $id))) {
 }
 
 require_login($course);
+require_sesskey();
 
 // Check if the profileid belongs to the current user.
 $profilesrecords = $DB->get_records('gradeexport_profiles', array(

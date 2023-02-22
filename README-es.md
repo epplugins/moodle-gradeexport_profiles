@@ -2,6 +2,8 @@
 
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 
+Exporta las calificaciones en diferentes formatos (ods, excel, csv) desde la misma página, y organiza perfiles para guardar las selecciones y opciones.
+
 Es un fork de ```gradeexport_ods``` (plugin que viene por defecto en Moodle) que permite al usuario trabajar con perfiles para guardar sus selecciones cuando exporta calificaciones.
 
 Cuando un usuario exporta calificaciones, sus selecciones de los ítems y opciones se pierden. Los plugins estándar muestran todos los ítems seleccionados y una oferta por defecto de opciones cada vez que se ingresa para exportar calificaciones.
@@ -27,7 +29,7 @@ Los archivos que se exportan son producidos por funciones incluidas por defecto 
 
 ## Instalación manual
 
-Este plugin también puede ser instalado copiando los contenidos de este directorio en 
+Este plugin también puede ser instalado copiando los contenidos de este directorio en
 
     {directorio/de/tu/moodle}/grade/export/profiles
 

@@ -84,12 +84,12 @@ $profileoptions = array(
 );
 
 if (!empty($data->savebutton)) {
-    gradeexport_profiles_unset_last();
+    require_sesskey();
     gradeexport_profiles_save_profile($data->itemids, $profileoptions, 1, $data->selectprofile, '');
     $url = new moodle_url('/grade/export/profiles/index.php', array('id' => $id));
     redirect($url);
 } else if (!empty($data->sendbutton)) {
-    gradeexport_profiles_unset_last();
+    require_sesskey();
     gradeexport_profiles_save_profile($data->itemids, $profileoptions, 1, '', $data->nameinput);
     $url = new moodle_url('/grade/export/profiles/index.php', array('id' => $id));
     redirect($url);
@@ -98,7 +98,7 @@ if (!empty($data->savebutton)) {
     echo $OUTPUT->header();
     echo $OUTPUT->box_start('noticebox');
     $buttoncontinue = new single_button(new moodle_url('/grade/export/profiles/delete.php',
-                        array('id' => $id, 'profileid' => $data->selectprofile)), get_string('delete'));
+                        array('id' => $id, 'profileid' => $data->selectprofile, 'sesskey' => sesskey())), get_string('delete'));
     $buttoncancel = new single_button(new moodle_url('/grade/export/profiles/index.php',
                         array('id' => $id)), get_string('cancel'));
     echo $OUTPUT->confirm(get_string('confirmdelete', 'gradeexport_profiles',
@@ -107,6 +107,7 @@ if (!empty($data->savebutton)) {
     echo $OUTPUT->footer();
     exit;
 } else if (!empty($data->submitbutton)) {
+    require_sesskey();
     if (in_array($data->selectprofile, array('a', 'b', 'c', 'd'))) {
         $last = 1;
     } else {
@@ -135,6 +136,7 @@ if (!empty($data->savebutton)) {
         $export->print_grades();
     }
 } else {
+    require_sesskey();
     if ($data->selectprofile == 'b') {
         $profileid = gradeexport_profiles_get_profileid("Last State");
     } else {

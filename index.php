@@ -40,7 +40,7 @@ $context = context_course::instance($id);
 require_capability('moodle/grade:export', $context);
 require_capability('gradeexport/profiles:view', $context);
 
-if (substr($CFG->version, 0, 8) > 20221128) {
+if (substr($CFG->version, 0, 8) > 20220400) {
     $actionbar = new \core_grades\output\export_action_bar($context, null, 'profiles');
     print_grade_page_head($COURSE->id, 'export', 'profiles',
         get_string('exportto', 'grades') . ' ' . get_string('pluginname', 'gradeexport_profiles'),

@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $observers = array (
     array(
-            'eventname'   => 'core\event\course_deleted',
-            'callback'    => 'gradeexport_profiles\observer::delete_course',
+            'eventname' => 'core\event\course_deleted',
+            'callback' => 'gradeexport_profiles\observer::delete_course',
     ),
 );

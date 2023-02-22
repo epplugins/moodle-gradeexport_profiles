@@ -188,9 +188,9 @@ class grade_export_profiles_form extends moodleform {
         }
         // Selections for decimal points and format, MDL-11667, defaults to site settings, if set
         // $default_gradedisplaytype = $CFG->grade_export_displaytype; .
-        $options = array(GRADE_DISPLAY_TYPE_REAL       => get_string('real', 'grades'),
+        $options = array(GRADE_DISPLAY_TYPE_REAL => get_string('real', 'grades'),
                          GRADE_DISPLAY_TYPE_PERCENTAGE => get_string('percentage', 'grades'),
-                         GRADE_DISPLAY_TYPE_LETTER     => get_string('letter', 'grades'));
+                         GRADE_DISPLAY_TYPE_LETTER => get_string('letter', 'grades'));
 
         if ($features['multipledisplaytypes']) {
             /*

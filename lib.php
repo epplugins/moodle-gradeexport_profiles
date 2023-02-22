@@ -36,7 +36,7 @@ function gradeexport_profiles_get_grades($profileid) {
     $profilegrades = array();
 
     $record = $DB->get_record('gradeexport_profiles', array(
-        'id'       => $profileid,
+        'id' => $profileid,
     ));
     if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
         $gradesresult = $DB->get_records('gradeexport_profiles_grds', array(
@@ -61,7 +61,7 @@ function gradeexport_profiles_get_options($profileid) {
     $profileopts = array();
 
     $record = $DB->get_record('gradeexport_profiles', array(
-        'id'       => $profileid,
+        'id' => $profileid,
     ));
     if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
         $optionsresult = $DB->get_records('gradeexport_profiles_opt', array('profileid' => $profileid));
@@ -115,7 +115,7 @@ function gradeexport_profiles_get_profilename($profileid) {
     global $USER, $COURSE, $DB;
 
     $record = $DB->get_record('gradeexport_profiles', array(
-        'id'       => $profileid,
+        'id' => $profileid,
     ));
     if ($record->courseid == $COURSE->id && $record->userid == $USER->id) {
         return $DB->get_field('gradeexport_profiles', 'profilename', array(
@@ -177,7 +177,7 @@ function gradeexport_profiles_set_last($profileid) {
     global $DB, $COURSE, $USER;
 
     $record = $DB->get_record('gradeexport_profiles', array(
-        'id'       => $profileid,
+        'id' => $profileid,
     ));
     if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
         // TODO: add transactions.
@@ -221,7 +221,7 @@ function gradeexport_profiles_save_profile($items, $options, $last, $profileid =
 
     if (!empty($profileid)) {
         $record = $DB->get_record('gradeexport_profiles', array(
-            'id'       => $profileid,
+            'id' => $profileid,
         ));
         if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
             if ($last == 1) {
@@ -238,7 +238,7 @@ function gradeexport_profiles_save_profile($items, $options, $last, $profileid =
         $profileid = gradeexport_profiles_get_profileid($profilename);
 
         $record = $DB->get_record('gradeexport_profiles', array(
-            'id'       => $profileid,
+            'id' => $profileid,
         ));
         if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
             if ($last == 1) {
@@ -262,7 +262,7 @@ function gradeexport_profiles_save_profile($items, $options, $last, $profileid =
     }
 
     $record = $DB->get_record('gradeexport_profiles', array(
-        'id'       => $profileid,
+        'id' => $profileid,
     ));
     if ($record != null && $record->courseid == $COURSE->id && $record->userid == $USER->id) {
         $entries = array();

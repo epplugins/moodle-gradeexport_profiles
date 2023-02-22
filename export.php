@@ -30,7 +30,7 @@ require_once($CFG->dirroot.'/grade/export/txt/grade_export_txt.php');
 require_once($CFG->dirroot.'/grade/export/xml/grade_export_xml.php');
 require_once('grade_export_profiles_form.php');
 
-$id                = required_param('id', PARAM_INT); // Course id.
+$id = required_param('id', PARAM_INT); // Course id.
 $PAGE->set_url('/grade/export/profiles/export.php', array('id' => $id));
 
 if (!$course = $DB->get_record('course', array('id' => $id))) {
@@ -74,13 +74,13 @@ $data = $mform->get_data();
 // functions like grade_export_ods.
 $profileoptions = array(
     "fileformat" => $data->fileformat,
-    "feedback"   => $data->export_feedback,
+    "feedback" => $data->export_feedback,
     "onlyactive" => $data->export_onlyactive,
-    "real"       => $data->display['real'],
+    "real" => $data->display['real'],
     "percentage" => $data->display['percentage'],
-    "letter"     => $data->display['letter'],
-    "decimals"   => $data->decimals,
-    "separator"  => grade_export_profiles_form::SEPARATOR[$data->separator]
+    "letter" => $data->display['letter'],
+    "decimals" => $data->decimals,
+    "separator" => grade_export_profiles_form::SEPARATOR[$data->separator],
 );
 
 if (!empty($data->savebutton)) {

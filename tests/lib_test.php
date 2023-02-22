@@ -136,9 +136,9 @@ class lib_test extends \advanced_testcase {
 
         gradeexport_profiles_set_last($profileid2);
         $profilesrecords = $DB->get_records('gradeexport_profiles', array(
-            'userid'   => $teacher1->id,
+            'userid' => $teacher1->id,
             'courseid' => $course1->id,
-            'last'     => 1,
+            'last' => 1,
         ));
         // Only 1 row last == 1 for this course-teacher.
         $this->assertEquals(1, count($profilesrecords));
@@ -148,30 +148,30 @@ class lib_test extends \advanced_testcase {
         // Should not be able to modify a profile of a different course.
         gradeexport_profiles_set_last($profileid7);
         $profilesrecord = $DB->get_record('gradeexport_profiles', array(
-            'id'       => $profileid7,
+            'id' => $profileid7,
         ));
         // It was last = 0 for this profile.
         $this->assertEquals(0, ($profilesrecord->last));
         // Verify there is still only one profile as last = 1.
         $profilesrecords = $DB->get_records('gradeexport_profiles', array(
-            'userid'   => $teacher1->id,
+            'userid' => $teacher1->id,
             'courseid' => $course2->id,
-            'last'     => 1,
+            'last' => 1,
         ));
         $this->assertEquals(1, count($profilesrecords));
 
         // Should not be able to modify a profile of a different user.
         gradeexport_profiles_set_last($profileid5);
         $profilesrecord = $DB->get_record('gradeexport_profiles', array(
-            'id'       => $profileid5,
+            'id' => $profileid5,
         ));
         // It was last = 0 for this profile.
         $this->assertEquals(0, ($profilesrecord->last));
         // Verify there is still only one profile as last = 1.
         $profilesrecords = $DB->get_records('gradeexport_profiles', array(
-            'userid'   => $teacher1->id,
+            'userid' => $teacher1->id,
             'courseid' => $course1->id,
-            'last'     => 1,
+            'last' => 1,
         ));
         $this->assertEquals(1, count($profilesrecords));
 
@@ -683,7 +683,7 @@ class lib_test extends \advanced_testcase {
             'onlyactive' => 1,
             'real' => 1,
             'percentage' => 1,
-            'letter'  => 0,
+            'letter' => 0,
             'decimals' => 2,
             'separator' => 1,
         );
@@ -759,7 +759,7 @@ class lib_test extends \advanced_testcase {
             'onlyactive' => 1,
             'real' => 1,
             'percentage' => 1,
-            'letter'  => 0,
+            'letter' => 0,
             'decimals' => 2,
             'separator' => 1,
         );
@@ -844,7 +844,7 @@ class lib_test extends \advanced_testcase {
             'onlyactive' => 1,
             'real' => 1,
             'percentage' => 1,
-            'letter'  => 0,
+            'letter' => 0,
             'decimals' => 2,
             'separator' => 1,
         );
@@ -929,7 +929,7 @@ class lib_test extends \advanced_testcase {
             'onlyactive' => 1,
             'real' => 1,
             'percentage' => 1,
-            'letter'  => 0,
+            'letter' => 0,
             'decimals' => 2,
             'separator' => 1,
         );

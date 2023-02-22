@@ -65,7 +65,7 @@ $formoptions = array(
 
 $mform = new grade_export_profiles_form($actionurl, $formoptions);
 
-$groupmode    = groups_get_course_groupmode($course);   // Groups are being used.
+$groupmode = groups_get_course_groupmode($course); // Groups are being used.
 $currentgroup = groups_get_course_group($course, true);
 
 if (($groupmode == SEPARATEGROUPS) &&

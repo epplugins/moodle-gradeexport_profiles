@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'gradeexport_profiles';
-$plugin->release = 'v0.2';
-$plugin->version = 2023022201;
+$plugin->release = 'v0.21';
+$plugin->version = 2023061300;
 $plugin->requires = 2021051700;
 $plugin->maturity = MATURITY_STABLE;

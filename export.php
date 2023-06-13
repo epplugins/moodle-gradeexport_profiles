@@ -108,7 +108,7 @@ if (!empty($data->savebutton)) {
     exit;
 } else if (!empty($data->submitbutton)) {
     require_sesskey();
-    if (in_array($data->selectprofile, array('a', 'b', 'c', 'd'))) {
+    if (in_array($data->selectprofile, array('a', 'b', 'c', 'd', 'e'))) {
         $last = 1;
     } else {
         $last = 0;
